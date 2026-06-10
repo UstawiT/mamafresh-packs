@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; }
+
+@layer components {
+  .btn-wa {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-fresh-500 px-6 py-3.5 text-base font-semibold text-white shadow-lg shadow-fresh-500/25 transition hover:bg-fresh-600 active:scale-95;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-fresh-500 px-6 py-3 text-base font-semibold text-fresh-600 transition hover:bg-fresh-50 active:scale-95;
+  }
+  .card {
+    @apply rounded-card bg-white p-6 shadow-sm ring-1 ring-black/5;
+  }
+  .section-title {
+    @apply text-2xl font-bold tracking-tight text-ink sm:text-3xl;
+  }
+}
