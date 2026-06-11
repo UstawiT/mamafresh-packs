@@ -1,4 +1,12 @@
 import "./globals.css";
+import { Fraunces, Epilogue } from "next/font/google";
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-display",
+  axes: ["SOFT", "WONK", "opsz"],
+});
+const epilogue = Epilogue({ subsets: ["latin"], variable: "--font-body" });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://mamafresh-packs.vercel.app";
 
@@ -32,8 +40,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className="bg-cream text-ink antialiased">{children}</body>
+    <html lang="en" className={`${fraunces.variable} ${epilogue.variable}`}>
+      <body className="bg-cream font-sans text-ink antialiased">{children}</body>
     </html>
   );
 }

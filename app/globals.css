@@ -4,17 +4,71 @@
 
 html { scroll-behavior: smooth; }
 
+/* ---- atmosphere: subtle grain over warm cream ---- */
+body {
+  background-color: #faf5ea;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+}
+
+::selection { background: #c75b39; color: #faf5ea; }
+
+/* ---- staggered reveal ---- */
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.rise { opacity: 0; animation: riseIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.rise-1 { animation-delay: 0.05s; }
+.rise-2 { animation-delay: 0.18s; }
+.rise-3 { animation-delay: 0.32s; }
+.rise-4 { animation-delay: 0.46s; }
+.rise-5 { animation-delay: 0.6s; }
+
+/* ---- food ticker ---- */
+@keyframes tickerScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.ticker-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: tickerScroll 28s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .rise { animation: none; opacity: 1; }
+  .ticker-track { animation: none; }
+}
+
+/* ---- gentle float for hero produce ---- */
+@keyframes floaty {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+.floaty { animation: floaty 6s ease-in-out infinite; }
+
+/* ---- dotted kiondo-weave texture for tinted bands ---- */
+.dots {
+  background-image: radial-gradient(rgba(38, 105, 58, 0.12) 1.2px, transparent 1.2px);
+  background-size: 18px 18px;
+}
+
 @layer components {
   .btn-wa {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-fresh-500 px-6 py-3.5 text-base font-semibold text-white shadow-lg shadow-fresh-500/25 transition hover:bg-fresh-600 active:scale-95;
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-fresh-600 px-6 py-3.5 text-base font-semibold text-cream shadow-lg shadow-fresh-700/30 transition-all duration-200 hover:-translate-y-0.5 hover:bg-fresh-500 hover:shadow-xl active:translate-y-0 active:scale-95;
   }
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-fresh-500 px-6 py-3 text-base font-semibold text-fresh-600 transition hover:bg-fresh-50 active:scale-95;
+    @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-fresh-600 px-6 py-3 text-base font-semibold text-fresh-600 transition-all duration-200 hover:-translate-y-0.5 hover:bg-fresh-50 active:translate-y-0 active:scale-95;
+  }
+  .btn-clay {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-warm-500 px-6 py-3.5 text-base font-semibold text-cream shadow-lg shadow-warm-600/30 transition-all duration-200 hover:-translate-y-0.5 hover:bg-warm-600 hover:shadow-xl active:translate-y-0 active:scale-95;
   }
   .card {
-    @apply rounded-card bg-white p-6 shadow-sm ring-1 ring-black/5;
+    @apply rounded-card border border-ink/10 bg-white/80 p-6 shadow-sm backdrop-blur-sm transition-all duration-200;
   }
   .section-title {
-    @apply text-2xl font-bold tracking-tight text-ink sm:text-3xl;
+    @apply font-display text-3xl font-semibold tracking-tight text-fresh-700 sm:text-4xl;
+  }
+  .eyebrow {
+    @apply text-xs font-bold uppercase tracking-[0.22em] text-warm-500;
   }
 }
